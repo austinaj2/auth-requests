@@ -48,8 +48,12 @@ def before_request():
 @auth.login_required
 def ping_service():
     url = 'http://127.0.0.1:5000/pong'
-    r = requests.get(url, auth=new_auth('vcu', 'rams')), 201
+    r = requests.get(url, auth=new_auth('vcu', 'rams'))
     pingpong_t = g.request_time()
+    return jsonify({'request time elapsed': pingpong_t}), 201
+
+@app.errorhandler(401)
+def authorization_error(e):
     return jsonify({'request time elapsed': pingpong_t}), 201
 
 @app.route('/pong', methods=['GET'])
