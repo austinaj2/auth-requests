@@ -49,7 +49,6 @@ def before_request():
 def ping_service():
     url = 'http://127.0.0.1:5000/pong'
     r = requests.get(url, auth=new_auth('vcu', 'rams')), 201
-    #pingpong_t = time.sleep(float(r))
     pingpong_t = g.request_time()
     return jsonify({'request time elapsed': pingpong_t}), 201
 
