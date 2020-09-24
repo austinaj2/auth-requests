@@ -47,7 +47,7 @@ def before_request():
 @app.route('/ping', methods=['GET'])
 @auth.login_required
 def ping_service():
-    url = 'http://127.0.0.1:5000/pong'
+    url = 'https://authorization-testing.herokuapp.com/pong'
     r = requests.get(url, auth=new_auth('vcu', 'rams'))
     pingpong_t = g.request_time()
     return jsonify({'request time elapsed': pingpong_t}), 201
